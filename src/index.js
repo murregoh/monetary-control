@@ -17,6 +17,12 @@ import OutgoingEdit from './components/outgoingEdit/OutgoingEdit';
 import OutgoingList from './components/outgoingList/OutgoingList';
 import SignUp from './components/signup/SignUp';
 import Background from './shared/Background';
+import { Helmet } from "react-helmet";
+import { AuthProvider } from './context/AuthContext';
+
+// images
+import favicon from './assets/images/logo.png';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 WebFont.load({
   google: {
@@ -26,31 +32,43 @@ WebFont.load({
 
 const Index = () => {
   return (
-    <React.StrictMode>
+
+    <>
+
+      <Helmet>
+        <link rel="shortcut icon" href={favicon} type='image/x-icon' />
+      </Helmet>
+
+      <AuthProvider>
+        <BrowserRouter>
+          <Container>
+            <Switch>
+              <Route path='/' component={App} exact />
+              <Route path='/login' component={Login} exact />
+              <Route path='/signup' component={SignUp} exact />
+
+              <PrivateRoute path='/categories' exact>
+                <OutgoingByCategory />
+              </PrivateRoute>
+
+              <PrivateRoute path='/list' exact>
+                <OutgoingList />
+              </PrivateRoute>
+
+              <PrivateRoute path='/edit/:id' exact>
+                <OutgoingEdit />
+              </PrivateRoute>
+
+              <Route path='*' component={App} />
+            </Switch>
+          </Container>
+        </BrowserRouter>
+
+        <Background />
+      </AuthProvider>
 
 
-      <BrowserRouter>
-
-        <Container>
-
-          <Switch>
-
-            <Route path='/' component={App} exact />
-            <Route path='/login' component={Login} exact />
-            <Route path='/signup' component={SignUp} exact />
-            <Route path='/categories' component={OutgoingByCategory} exact />
-            <Route path='/list' component={OutgoingList} exact />
-            <Route path='/edit/:id' component={OutgoingEdit} exact />
-            <Route path='*' component={App} />
-
-          </Switch>
-
-        </Container>
-
-      </BrowserRouter>
-
-      <Background />
-    </React.StrictMode>
+    </>
   );
 }
 

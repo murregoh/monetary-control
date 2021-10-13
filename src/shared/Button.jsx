@@ -19,14 +19,11 @@ const Button = styled(Link)`
     justify-content: space-between;
     align-items: center;
     outline: none;
- 
+
     svg {
         height: ${(props) => props.bigIcon ? '100%' : '0.75rem;'};  /* 12px */
         fill: white;
     }
 `;
 
-const BackButton = styled.button`
-`;
-
-export { Button, BackButton };
+export default Button;

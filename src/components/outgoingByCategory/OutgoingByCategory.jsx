@@ -1,16 +1,19 @@
-import { Header, Title, HeaderContainer, ContainerButtons } from '../../shared/Header';
-import { Button } from '../../shared/Buttons';
+import { Header, Title } from '../../shared/Header';
+import { Helmet } from "react-helmet";
+import BackButton from '../../shared/BackButton';
 
 const OutgoingByCategory = () => {
     return (
         <>
+            <Helmet>
+                <title>
+                    Outgoings By Category
+                </title>
+            </Helmet>
+
             <Header>
-                <HeaderContainer>
-                    <Title>Outgoing by Category</Title>
-                    <ContainerButtons>
-                        <Button to='/'>Back</Button>
-                    </ContainerButtons>
-                </HeaderContainer>
+                <BackButton />
+                <Title>Outgoing by Category</Title>
             </Header>
         </>
     );
