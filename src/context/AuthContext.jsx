@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const suscription = onAuthStateChanged(auth, (user) => {
-            debugger;
             setUser(user);
             setLoading(false);
         });
